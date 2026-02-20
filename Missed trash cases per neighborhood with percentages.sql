@@ -1,57 +1,31 @@
---With allows me to select my old query as a part of this query
-WITH per_neighborhood AS (
+--    **************************************
+--    2025 311 MISSED TRASH REPRORTS PROJECT
+--    **************************************
 
---My original table that puts together populations and 311 cases
-  SELECT
-    t.neighborhood,
-    COUNT(*) AS missed_cases_2025,
-    p.total_population AS town_population
-  FROM trash_raw t
-  LEFT JOIN boston_populations p
-    ON t.neighborhood = p.neighborhood
-  WHERE t.case_types ~* '\mMissed Trash\M'
-  GROUP BY
-    t.neighborhood,
-    p.total_population
-),
+-- View Tables (we will be using two tables for this project. One for 311 data, one for population data per neighborhood)
 
-  -- The section adds what percentage of total population a specific town is
-with_totals AS (
-  SELECT
-    *,
-    SUM(town_population) OVER () AS total_population_all
-  FROM per_neighborhood
-),
+SELECT * FROM trah_raw;
+SELECT * FROM boston_populations; 
 
-  --This is the end of the WITH function that created a table for us to work with. 
-percentages AS (
-  SELECT
-    neighborhood,
-    town_population,
-    total_population_all,
-   
-      -- 1) percent of total population
-    ROUND(100.0 * town_population / NULLIF(total_population_all, 0), 4) AS pct_of_total_population,
-  
-    missed_cases_2025,
+--    *************************
+--    311 Reports by Case Types
+--    *************************
 
-      -- 2) missed pickups per town population (rate within neighborhood)
-    ROUND(1000.0 * missed_cases_2025 / NULLIF(town_population, 0), 6) AS missed_per_1000_people,
+-- This counts how many 2025 311 reports in Boston. There were 267,187 reports
 
-      -- 3) missed pickups per total population (share of entire city's population)
-    ROUND(100.0 * missed_cases_2025 / NULLIF(total_population_all, 0), 10) AS missed_per_total_population
- 
-FROM with_totals
-)
+SELECT COUNT(*) FROM trash_raw; 
 
---The Final SELECT where I cleanly select everything that I've worked on
-SELECT
-  neighborhood,
-  town_population,
-  total_population_all,
-  pct_of_total_population,
-  missed_cases_2025,
-  missed_per_1000_people,
-  missed_per_total_population
-FROM percentages
-  ORDER BY missed_per_1000_people DESC;
+-- This counts how many distinct case_types show up in the 311 reports data. There are 162 different case types.
+
+SELECT COUNT(DISTINCT(case_types)) FROM trash_raw; 
+
+-- This lists each case type, and how many of each one there were in 2025. The top 3 case types in 2025 were: Parking Enforcement, Requests for Street Cleaning, Improper Storage of Trash (Barrels). 
+
+SELECT 	case_types,
+  COUNT(*) AS number_of_reports FROM trash_raw
+  GROUP BY case_types
+  ORDER BY number_of_reports DESC;
+
+-- This gets us the specific case types we are interesting in: Missed Trash Reports. We use case types rather than case title because there are many different missed trash case titles, but only one missed trash case type 
+SELECT open_dt, case_types, nieghborhood FROM trash_raw
+WHERE case_types = 'Missed Trash/Recycling/Yard Waste/Bulk Item'; 
