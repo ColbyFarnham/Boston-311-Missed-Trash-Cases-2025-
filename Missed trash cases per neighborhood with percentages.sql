@@ -2,7 +2,7 @@
 --    2025 311 MISSED TRASH REPORTS PROJECT
 --    ======================================
 
---    View Tables (we will be using two tables for this project. One for 311 data, one for population data per neighborhood) --
+--    View Tables     --
 
 SELECT * FROM trash_raw;
 SELECT * FROM boston_populations; 
@@ -11,7 +11,7 @@ SELECT * FROM boston_populations;
 --    311 REPORTS BY CASE TYPE
 --    ========================
 
---    Count number of 311 reports --
+--    Count number of 311 reports    --
 
 SELECT COUNT(*) FROM trash_raw; 
 
@@ -19,18 +19,18 @@ SELECT COUNT(*) FROM trash_raw;
 
 SELECT COUNT(DISTINCT(case_types)) FROM trash_raw; 
 
---    Counts each case type-
+--    Counts each case type    --
 
 SELECT 	case_types, COUNT(*) AS number_of_reports FROM trash_raw
   GROUP BY case_types
   ORDER BY number_of_reports DESC;
 
--- Counts Missed Trash cases --
+-- Counts Missed Trash cases    --
 
 SELECT COUNT(*) FROM trash_raw
   WHERE case_types = 'Missed Trash/Recycling/Yard Waste/Bulk Item'; 
 
---    Percentage of Missed Trash reports --
+--    Percentage of Missed Trash reports    --
 
 WITH trash_per_total AS 
   (
@@ -45,14 +45,14 @@ SELECT missed_trash_cases, total_reports, (missed_trash_cases::numeric / total_r
 --    MISSED TRASH BY NEIGHBORHOOD
 --    ============================
 
---    Missed Trash cases by  neighborhood. Top three - Hyde Park, Roxbury --
+--    Missed Trash cases by  neighborhood    --
 
 SELECT neighborhood, COUNT(*) AS missed_trash_cases FROM trash_raw
   WHERE case_types = 'Missed Trash/Recycling/Yard Waste/Bulk Item'
   GROUP BY neighborhood
   ORDER BY missed_trash_cases DESC; 
 
---    Adding the total number of Missed Trash cases, and the percent at which each nieghborhood makes up of the total to the table --
+--    Adding the total number of Missed Trash cases, and the percent at which each nieghborhood makes up of the total to the table    --
 
 WITH cases_per_neighborhood AS 
   (
@@ -105,7 +105,7 @@ FROM cases_per_neighborhood;
 --    NEIGHBORHOODS AND POPULATIONS
 --    =============================
 
---    Joining populations on the 311 neighborhood column --
+--    Joining populations on the 311 neighborhood column    --
 
 SELECT
   t.neighborhood ,
@@ -121,7 +121,7 @@ GROUP BY
 ORDER BY
   population DESC;
 
---    neighborhood, town_population, missed_cases_2025, pct_of_total_cases, missed_per_1000_people --
+--    neighborhood, town_population, missed_cases_2025, pct_of_total_cases, missed_per_1000_people    --
 
 WITH per_neighborhood AS (
   SELECT
@@ -161,3 +161,4 @@ SELECT
   missed_per_1000_people
 FROM percentages
   ORDER BY missed_per_1000_people DESC;
+
