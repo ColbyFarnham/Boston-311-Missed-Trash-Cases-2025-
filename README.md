@@ -24,6 +24,7 @@ Analyze Boston 311 service requests to identify which neighborhoods have the hig
 2. How many were related to missed trash?
 3. Which neighborhoods have the most missed trash cases?
 4. Which neighborhoods have the highest **missed trash rate per 1,000 residents**?
+5. Does **neighborhood population** corelate to the **missed trash rate**?
 
 ---
 
