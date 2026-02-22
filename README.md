@@ -1,4 +1,4 @@
-# 📊 Boston 311 Missed Trash Reports (2025)
+# Reporting 📞 Boston 311 Missed Trash Reports (2025)
 
 ## Objective
 Analyze Boston 311 service requests to identify which neighborhoods have the highest **Missed Trash/Recycling/Yard Waste/Bulk Item** report rates in 2025 - including normalization **per 1,000 residents** - and prove or disprove my hypothesis.
