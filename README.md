@@ -30,6 +30,9 @@ Analyze Boston 311 service requests to identify which neighborhoods have the hig
 
 ## 📊 Visualizations
 ![Boston 311 Missed Trash](page_one_311.png)
+![Boston 311 Missed Trash](page_two_311.png)
+![Boston 311 Missed Trash](page_three_311.png)
+![Boston 311 Missed Trash](page_four_311.png)
 
 
 ---
