@@ -18,6 +18,8 @@ Analyze Boston 311 service requests to identify which neighborhoods have the hig
 
 ## Tools Used
 - PostgreSQL (CTEs, JOINs, Window Functions)
+- Python (Data visualization)
+- Canva (Compiling Report)
 - GitHub for version control
 
 ---
