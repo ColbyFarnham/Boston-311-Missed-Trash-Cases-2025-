@@ -27,6 +27,15 @@ Analyze Boston 311 service requests to identify which neighborhoods have the hig
 
 ---
 
+## 📊 Visualizations
+
+### Missed Trash Rate vs Population
+![Rate vs Population]("C:\Users\layde\OneDrive\Desktop\page_one_311.png")
+
+
+
+---
+
 ## Core SQL (per-capita ranking)
 ```sql
 WITH per_neighborhood AS (
