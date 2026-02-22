@@ -31,7 +31,7 @@ Analyze Boston 311 service requests to identify which neighborhoods have the hig
 ## 📊 Visualizations
 
 ### Missed Trash Rate vs Population
-![Boston 311 Missed Trash]([images\page_one_311.png](https://github.com/ColbyFarnham/Boston-311-Missed-Trash-Cases-2025-/blob/main/page_one_311.png))
+![Boston 311 Missed Trash](images\page_one_311.png](https://github.com/ColbyFarnham/Boston-311-Missed-Trash-Cases-2025-/blob/main/page_one_311.png)
 
 
 
