@@ -16,6 +16,13 @@ Analyze Boston 311 service requests to identify which neighborhoods have the hig
 
 ---
 
+## Data Cleaning
+- Some neighborhoods were labeled Allston/Brighton
+- Filtered for Allston / Brighton in the address field rather than the neighborhood field,
+- then update the data to either 'Allston' or 'Brighton' 
+
+---
+
 ## Tools Used
 - PostgreSQL (CTEs, JOINs, Window Functions)
 - Python (Data visualization)
