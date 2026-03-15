@@ -17,8 +17,9 @@ Analyze Boston 311 service requests to identify which neighborhoods have the hig
 ---
 
 ## Data Cleaning
-- Some neighborhoods were labeled Allston/Brighton
-- Filtered for Allston / Brighton in the address field rather than the neighborhood field, then updated the neighborhood field to match what it found in the address field. 
+- Some records were labeled “Allston/Brighton” in the neighborhood field.
+- The address field was used to determine the correct neighborhood designation.
+- The neighborhood field was then standardized to either Allston or Brighton.
 
 ---
 
